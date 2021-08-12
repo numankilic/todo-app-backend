@@ -27,4 +27,16 @@ public class TodoController {
         TodoItem updatedTodoItem = todoService.updateTodoItem(id, todoItem);
         return ResponseEntity.ok(updatedTodoItem);
     }
+
+    @PostMapping("/api/todoItems")
+    public ResponseEntity<?> createNewTodoItem(){
+        TodoItem todoItem =  todoService.createTodoItem();
+        return ResponseEntity.ok(todoItem);
+    }
+
+    @DeleteMapping("/api/todoItems/{id}")
+    public ResponseEntity<?> deleteTodoItem(@PathVariable(value = "id")Integer id){
+        todoService.deleteTodoItem(id);
+        return ResponseEntity.ok("ok");
+    }
 }

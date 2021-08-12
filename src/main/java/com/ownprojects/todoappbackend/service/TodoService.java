@@ -14,7 +14,7 @@ public class TodoService {
     @Autowired
     private TodoRepository todoRepository;
 
-    public List<TodoItem> fetchAllTodoItems(){
+    public List<TodoItem> fetchAllTodoItems() {
         return todoRepository.fetchAllTodoItems();
     }
 
@@ -24,12 +24,26 @@ public class TodoService {
                 .stream()
                 .filter(item -> item.getId().equals(id))
                 .findAny();
-        if(todoOpt.isPresent()){
+        if (todoOpt.isPresent()) {
             TodoItem item = todoOpt.get();
             item.setDone(todoItem.getDone());
             item.setTask(todoItem.getTask());
-            return  item;
+            return item;
         }
         return null;
+    }
+
+    public TodoItem createTodoItem() {
+        TodoItem todoItem = new TodoItem();
+        todoItem.setDone(false);
+
+        todoItem = todoRepository.save(todoItem);
+        todoItem.setTask("Task #" + todoItem.getId());
+        return todoItem;
+    }
+
+
+    public void deleteTodoItem(Integer id) {
+        todoRepository.delete(id);
     }
 }
