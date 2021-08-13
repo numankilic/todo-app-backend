@@ -4,7 +4,7 @@ public class TodoItem {
 
     private Integer id;
     private String task;
-    private Boolean isDone;
+    private Boolean done;
 
 
 
@@ -25,10 +25,10 @@ public class TodoItem {
     }
 
     public Boolean getDone() {
-        return isDone;
+        return done;
     }
 
     public void setDone(Boolean done) {
-        isDone = done;
+        this.done = done;
     }
 }
